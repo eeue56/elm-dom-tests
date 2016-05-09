@@ -1,4 +1,4 @@
-module Dom (find, findInNode, DomNode, htmlToString) where
+module Dom (find, findInNode, DomNode, htmlToString, contains) where
 
 import Native.Dom
 import Html exposing (Html)
@@ -31,3 +31,9 @@ findInNode query node =
 stringToCheerio : String -> DomNode
 stringToCheerio html =
     Native.Dom.stringToCheerio html
+
+{-| see a dom node contains a string
+-}
+contains : String -> DomNode -> Bool
+contains string node =
+    Native.Dom.contains string node
