@@ -1,4 +1,3 @@
-
 Elm.Native.Dom = {};
 Elm.Native.Dom.make = function(localRuntime) {
     localRuntime.Native = localRuntime.Native || {};
@@ -19,8 +18,6 @@ Elm.Native.Dom.make = function(localRuntime) {
     };
 
     var find = function(query, cheerioInstance){
-        var $ = cheerioInstance;
-
         var nodes = [];
         var found = cheerioInstance(query);
 
@@ -31,9 +28,15 @@ Elm.Native.Dom.make = function(localRuntime) {
         return $Elm$List.fromArray(nodes);
     };
 
+    var contains = function(query, cheerioInstance){
+        var nodeText = cheerioInstance.html();
+        return nodeText.indexOf(query) > -1;
+    };
+
     return Elm.Native.Dom.values = {
         htmlToString: toHtml,
         stringToCheerio: toCheerio,
-        find: F2(find)
+        find: F2(find),
+        contains: F2(contains)
     };
 };
